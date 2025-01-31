@@ -1,5 +1,4 @@
 const { MongoClient } = require("mongodb");
-const { ObjectId } = require("mongodb");
 
 let db = null;
 let listingsCollection = null;

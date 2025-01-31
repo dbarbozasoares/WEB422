@@ -3,6 +3,7 @@ const cors = require("cors");
 const app = express();
 const path = require("path");
 const db = require("./modules/listingsDB.js");
+const Listing = require("./modules/listingSchema");
 
 require("dotenv").config();
 
@@ -54,13 +55,14 @@ db.initialize(process.env.MONGODB_CONN_STRING)
         });
     });
 
-    // POST new data into database from body data (STILL TO DO class schema to send as object)
+    // POST new data into database from body data
     app.post("/api/listings", (req, res) => {
-      const { data } = req.body;
+      const data = req.body;
       if (!data) {
         return res.status(400).json({ error: "Missing listing data" });
       }
-      db.addListing(data)
+      const newListing = new Listing(data);
+      db.addListing(newListing)
         .then(() => {
           res.status(200).send(`<h1>Listing inserted success`);
         })
