@@ -13,13 +13,17 @@
       }
     }
   ],
-  "routes": [
+ "routes": [
     {
-      "src": "/(.*)",
+      "src": "/api/listings/(.*)",
       "dest": "Assignment_1/server.js",
       "headers": {
         "Cache-Control": "no-store"
       }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "Assignment_1/server.js"
     }
   ]
 }
