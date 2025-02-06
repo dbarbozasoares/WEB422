@@ -1,7 +1,9 @@
 import { UserModel, mongooseConnect } from "@/lib/dbUtils";
 
 export default async function handler(req, res) {
-  const { name, id } = req.body;
+  const { name } = req.body;
+  console.log("Request Body:", req.body);
+
   const { method } = req;
 
   try {
@@ -13,15 +15,9 @@ export default async function handler(req, res) {
         res.status(200).json(users);
         break;
       case "POST":
-        const isValid = await validateId(id);
-        console.log(isValid);
-        if (isValid) {
-          const newUser = new UserModel({ name, id });
-          await newUser.save();
-          res.status(200).json({ message: `User: (ID ${id}) ${name} Created` });
-        } else {
-          res.status(400).json({ message: `User ${id} already exists` });
-        }
+        const newUser = new UserModel({ name });
+        await newUser.save();
+        res.status(200).json({ message: `User: ${name} Created` });
         break;
       default:
         res.setHeader("Allow", ["GET", "POST"]);
@@ -29,10 +25,5 @@ export default async function handler(req, res) {
     }
   } catch (err) {
     res.status(500).json({ message: err.message });
-  }
-
-  async function validateId(id) {
-    const checker = await UserModel.findOne({ id: id });
-    return checker === null;
   }
 }

@@ -6,11 +6,6 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  id: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
 });
 
 mongoose.models = {};
