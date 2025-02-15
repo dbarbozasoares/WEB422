@@ -1,14 +1,29 @@
-body{
-    padding-left: 20%;
-    padding-right: 20%;
-}
 td{
     border: 2px solid black;
 }
-tr:hover{
-    background-color: lightgray;
+.table-box #listingsTable tr:hover{
+    background-color: lightblue;
 }
 table{
     width: 100%;
     border: 3px solid black;
 }
+
+.table-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  
+  .table-box #listingsTable {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    table-layout: fixed;
+    overflow: hidden;
+  }
+  

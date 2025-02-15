@@ -29,13 +29,19 @@ db.initialize(process.env.MONGODB_CONN_STRING)
     });
 
     // RETRIEVE all listings
-    app.get("/api/listings", (req, res) => {
+    app.get("/api/listings", async (req, res) => {
       try {
-        db.getAllListings().then((orders) => {
-          res.status(200).json(orders);
-        });
+        // Get page and limit from query parameters
+        const page = parseInt(req.query.page) || 1; // Default to page 1
+        const limit = parseInt(req.query.limit) || 10; // Default to 10 items per page
+
+        // Adjust pagination logic depending on your database or query logic
+        const skip = (page - 1) * limit;
+        const listings = await getAllListings({ skip, limit });
+        res.status(200).json(listings);
       } catch (err) {
-        console.log("List all orders from server" + err);
+        console.log("Error fetching listings: " + err);
+        res.status(500).send("Error fetching listings");
       }
     });
 

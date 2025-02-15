@@ -17,12 +17,19 @@ async function initialize(mongoURI) {
 }
 
 // GET all orders
-async function getAllListings() {
+async function getAllListings({ skip = 0, limit = 10 }) {
   try {
-    const listings = await listingsCollection.find().toArray();
+    // Fetch listings with pagination
+    const listings = await listingsCollection
+      .find()
+      .skip(skip) // Skip the records based on the page
+      .limit(limit) // Limit the number of records returned
+      .toArray();
+
     return listings;
   } catch (err) {
     console.log("Error in fetching all data", err);
+    throw err; // Optional: You can throw the error to propagate it up
   }
 }
 
