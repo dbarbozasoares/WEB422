@@ -32,7 +32,6 @@ db.initialize(process.env.MONGODB_CONN_STRING)
     app.get("/api/listings", (req, res) => {
       try {
         db.getAllListings().then((orders) => {
-          console.log(orders);
           res.status(200).json(orders);
         });
       } catch (err) {
