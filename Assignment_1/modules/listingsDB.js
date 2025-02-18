@@ -1,3 +1,13 @@
+/********************************************************************************
+ * WEB422 – Assignment 2
+ *
+ * I declare that this assignment is my own work in accordance with Seneca's
+ * Academic Integrity Policy:
+ * https://www.senecapolytechnic.ca/about/policies/academic-integrity-policy.html
+ *
+ * Name: Diego B Soares Student ID: ____145820239____ Date: __feb - 17 - 2025_______
+ * Published URL: _________________https://github.com/dbarbozasoares/WEB422__________________________________________
+ ********************************************************************************/
 const { MongoClient } = require("mongodb");
 
 let db = null;
@@ -17,19 +27,22 @@ async function initialize(mongoURI) {
 }
 
 // GET all orders
-async function getAllListings({ skip = 0, limit = 10 }) {
+async function getAllListings({ skip = 0, limit = 10, searchName = "" }) {
   try {
-    // Fetch listings with pagination
+    const query = searchName
+      ? { name: { $regex: searchName, $options: "i" } }
+      : {}; // regex to match case-insensitive names
+
+    // fetch listings with pagination
     const listings = await listingsCollection
-      .find()
-      .skip(skip) // Skip the records based on the page
-      .limit(limit) // Limit the number of records returned
-      .toArray();
+      .find(query)
+      .skip(skip) // skip the records based on the page
+      .limit(limit)
+      .toArray(); // limit the number of records returned
 
     return listings;
   } catch (err) {
-    console.log("Error in fetching all data", err);
-    throw err; // Optional: You can throw the error to propagate it up
+    console.log("Error in fetching all data", err); // it doesnt throw error so it doesnt break
   }
 }
 

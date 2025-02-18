@@ -1,12 +1,27 @@
+/********************************************************************************
+ * WEB422 – Assignment 2
+ *
+ * I declare that this assignment is my own work in accordance with Seneca's
+ * Academic Integrity Policy:
+ * https://www.senecapolytechnic.ca/about/policies/academic-integrity-policy.html
+ *
+ * Name: Diego B Soares Student ID: ____145820239____ Date: __feb - 17 - 2025_______
+ * Published URL: _________________https://github.com/dbarbozasoares/WEB422__________________________________________
+ ********************************************************************************/
 document.addEventListener("DOMContentLoaded", function () {
   var table = document
     .getElementById("listingsTable")
     .getElementsByTagName("tbody")[0];
   let currentPage = 1; // page tracker
   const itemsPerPage = 10; // items per page
+  let searchName = null;
 
   function fetchListings(page) {
-    fetch("/api/listings?page=${currentPage}&limit=${itemsPerPage}")
+    const url = searchName
+      ? `/api/listings?page=${page}&perPage=${itemsPerPage}&name=${searchName}`
+      : `/api/listings?page=${page}&perPage=${itemsPerPage}`;
+
+    fetch(url)
       .then((response) => {
         return response.json();
       })
@@ -34,10 +49,21 @@ document.addEventListener("DOMContentLoaded", function () {
           const listAccommodate = document.createElement("span");
           listAccommodate.textContent = `Accommodates: ${list.accommodates}`;
           listAccommodate.style.fontWeight = "bolder";
+
+          const listRating = document.createElement("span");
+          listRating.textContent = `${
+            list.review_scores.review_scores_rating
+              ? list.review_scores.review_scores_rating
+              : "N/A"
+          }`;
+          listRating.style.fontWeight = "bolder";
+
           const listSummary = document.createElement("td");
-          listSummary.textContent = `${list.summary}`;
-          listSummary.appendChild(lineBreak);
-          listSummary.appendChild(listAccommodate);
+          listSummary.innerHTML = `
+            ${list.summary}<br>
+            <span style="font-weight: bold;">Accommodates:</span> ${list.accommodates}<br>
+            <span style="font-weight: bold;">Rating:</span> ${listRating.textContent} (${list.reviews.length} Reviews)<br>
+            `;
           row.append(listSummary);
           table.append(row);
 
@@ -47,10 +73,17 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("ROW ID: " + listId);
           });
         });
-        document.getElementById("current-page").textContent = `Page: (${page})`;
-        document.getElementById("prev-page").disabled = page === 1;
-        document.getElementById("next-page").disabled =
-          listings.length < itemsPerPage;
+        document.getElementById("current-page").textContent = `${page}`; // display current page
+        const prevPage = document.getElementById("prev-page");
+        const nextPage = document.getElementById("next-page");
+        // disable previous if we're on the first page
+        prevPage.classList.toggle("disabled", page === 1);
+        prevPage.style.pointerEvents = page === 1 ? "none" : "auto";
+
+        // disable next page if there are fewer listings than items per page
+        nextPage.classList.toggle("disabled", listings.length < itemsPerPage);
+        nextPage.style.pointerEvents =
+          listings.length < itemsPerPage ? "none" : "auto";
       });
   }
 
@@ -66,19 +99,19 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((listing) => {
         modalTitle.textContent = listing.name;
         modalBody.innerHTML = `
-        <img src=${listing.images.picture_url}>
-        <p><strong>Price:</strong> ${listing.price.$numberDecimal} ${
+          <img src=${listing.images.picture_url}>
+          <p><strong>Price:</strong> ${listing.price.$numberDecimal} ${
           listing.security_deposit?.$numberDecimal &&
           listing.security_deposit?.$numberDecimal > 0
             ? `(Security deposit:${listing.security_deposit.$numberDecimal})`
             : " "
         }</p>
-        <p><strong>Location:</strong> ${listing.address.street}, ${
+          <p><strong>Location:</strong> ${listing.address.street}, ${
           listing.address.suburb
         }</p>
-        <p><strong>Summary:</strong> ${listing.summary}</p>
-        <p><strong>Accommodates:</strong> ${listing.accommodates}</p>
-        `;
+          <p><strong>Summary:</strong> ${listing.summary}</p>
+          <p><strong>Accommodates:</strong> ${listing.accommodates}</p>
+          `;
 
         // pop up the modal
         const bootstrapModal = new bootstrap.Modal(modal);
@@ -93,17 +126,23 @@ document.addEventListener("DOMContentLoaded", function () {
   const invalidNameMessage = document.getElementById("invalid-name");
 
   // FORM FUNCTIONS
+  function searchListingsByName(name) {
+    searchName = name.trim();
+    currentPage = 1; // Reset to page 1 when searching
+    fetchListings(currentPage);
+  }
+
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const idToSearch = nameInput.value.trim();
+    const nameToSearch = nameInput.value.trim();
     invalidNameMessage.textContent = "";
     invalidNameMessage.style.display = "none";
 
     console.log("Submit cliked"); // DEBUG
 
-    if (idToSearch !== "") {
-      console.log("ok");
+    if (nameToSearch !== "") {
+      searchListingsByName(nameToSearch);
     } else {
       invalidNameMessage.textContent = "Invalid name, try again";
     }
@@ -111,9 +150,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   clearButton.addEventListener("click", function (event) {
     event.preventDefault();
-    nameInput.textContent = "";
     nameInput.value = "";
     invalidNameMessage.style.display = "none";
+    currentPage = 1;
+    searchName = null;
+    fetchListings(currentPage);
   });
 
   // PAGINATIONS VARIABLES
@@ -121,10 +162,8 @@ document.addEventListener("DOMContentLoaded", function () {
     currentPage++;
     fetchListings(currentPage);
   });
-  document
-    .getElementById("previous-page")
-    .addEventListener("click", function () {
-      currentPage--;
-      fetchListings(currentPage);
-    });
+  document.getElementById("prev-page").addEventListener("click", function () {
+    currentPage--;
+    fetchListings(currentPage);
+  });
 });

@@ -1,11 +1,11 @@
 /********************************************************************************
- * WEB422 – Assignment 1
+ * WEB422 – Assignment 2
  *
  * I declare that this assignment is my own work in accordance with Seneca's
  * Academic Integrity Policy:
  * https://www.senecapolytechnic.ca/about/policies/academic-integrity-policy.html
  *
- * Name: Diego B Soares Student ID: ____145820239____ Date: __feb - 03 - 2025_______
+ * Name: Diego B Soares Student ID: ____145820239____ Date: __feb - 17 - 2025_______
  * Published URL: _________________https://github.com/dbarbozasoares/WEB422__________________________________________
  ********************************************************************************/
 const express = require("express");
@@ -32,16 +32,22 @@ db.initialize(process.env.MONGODB_CONN_STRING)
     app.get("/api/listings", async (req, res) => {
       try {
         // Get page and limit from query parameters
-        const page = parseInt(req.query.page) || 1; // Default to page 1
-        const limit = parseInt(req.query.limit) || 10; // Default to 10 items per page
+        const page = parseInt(req.query.page) || 1; // default to page 1
+        const perPage = parseInt(req.query.perPage) || 10; // Display 10 at time so it returns faster
+        const searchName = req.query.name || "";
 
-        // Adjust pagination logic depending on your database or query logic
-        const skip = (page - 1) * limit;
-        const listings = await getAllListings({ skip, limit });
+        const skip = (page - 1) * perPage;
+        const listings = await db.getAllListings({
+          skip,
+          limit: perPage,
+          searchName,
+        });
         res.status(200).json(listings);
       } catch (err) {
         console.log("Error fetching listings: " + err);
-        res.status(500).send("Error fetching listings");
+        res
+          .status(500)
+          .json({ error: "Internal Server Error", details: err.message });
       }
     });
 
