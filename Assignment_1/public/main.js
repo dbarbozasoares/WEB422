@@ -16,11 +16,20 @@ document.addEventListener("DOMContentLoaded", function () {
   const itemsPerPage = 10; // items per page
   let searchName = null;
 
+  let apiBaseUrl = "";
+
+  if (window.location.hostname === "localhost") {
+    // Local development API URL
+    apiBaseUrl = "http://localhost:5000"; // Replace with your local API URL
+  } else {
+    // Vercel API
+    apiBaseUrl = "https://webassignments-three.vercel.app"; // Replace with your deployed API URL
+  }
+
   function fetchListings(page) {
     const url = searchName
-      ? `/api/listings?page=${page}&perPage=${itemsPerPage}&name=${searchName}`
-      : `/api/listings?page=${page}&perPage=${itemsPerPage}`;
-
+      ? `${apiBaseUrl}/api/listings?page=${page}&perPage=${itemsPerPage}&name=${searchName}`
+      : `${apiBaseUrl}/api/listings?page=${page}&perPage=${itemsPerPage}`;
     fetch(url)
       .then((response) => {
         return response.json();
