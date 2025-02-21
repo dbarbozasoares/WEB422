@@ -15,15 +15,14 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentPage = 1; // page tracker
   const itemsPerPage = 10; // items per page
   let searchName = null;
-
   let apiBaseUrl = "";
 
   if (window.location.hostname === "localhost") {
-    // Local development API URL
-    apiBaseUrl = "http://localhost:5000"; // Replace with your local API URL
+    // Local API URL
+    apiBaseUrl = "http://localhost:5000";
   } else {
     // Vercel API
-    apiBaseUrl = "https://webassignments-three.vercel.app"; // Replace with your deployed API URL
+    apiBaseUrl = "https://webassignments-three.vercel.app";
   }
 
   function fetchListings(page) {
