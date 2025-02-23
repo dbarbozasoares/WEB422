@@ -1,3 +1,13 @@
+/********************************************************************************
+ * WEB422 – Test 03
+ *
+ * I declare that this assignment is my own work in accordance with Seneca's
+ * Academic Integrity Policy:
+ * https://www.senecapolytechnic.ca/about/policies/academic-integrity-policy.html
+ *
+ * Name: Diego B Soares Student ID: ____145820239____ Date: __feb - 22 - 2025_______
+ * Published URL: _________________https://github.com/dbarbozasoares/WEB422__________________________________________
+ ********************************************************************************/
 "use client"; //enables using useState and useEffect
 
 import { useState, useEffect } from "react";
@@ -5,11 +15,11 @@ import { useState, useEffect } from "react";
 export default function Home() {
   const [users, setUsers] = useState([]); // set users as empty when initialize
 
-  // Fetching users when the component mounts
+  // fetching users
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("/api/users"); // Fetch users data from the API
+        const response = await fetch("/api/users"); // fetch users data from the API
         if (response.ok) {
           const data = await response.json(); // Parse JSON data
           setUsers(data); // Update state with users data
@@ -21,7 +31,7 @@ export default function Home() {
       }
     };
 
-    fetchUsers(); // Call the fetch function
+    fetchUsers(); // call the fetch function
   }, []);
 
   return (

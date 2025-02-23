@@ -1,3 +1,13 @@
+/********************************************************************************
+ * WEB422 – Test 03
+ *
+ * I declare that this assignment is my own work in accordance with Seneca's
+ * Academic Integrity Policy:
+ * https://www.senecapolytechnic.ca/about/policies/academic-integrity-policy.html
+ *
+ * Name: Diego B Soares Student ID: ____145820239____ Date: __feb - 22 - 2025_______
+ * Published URL: _________________https://github.com/dbarbozasoares/WEB422__________________________________________
+ ********************************************************************************/
 import { users } from "../route"; // Import users from users API
 
 // by using folder [id] it automatically handles any request to api/users/[id]... and inside route we can manage the parameters
