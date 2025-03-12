@@ -1,6 +1,6 @@
 import MainNav from "./MainNav";
 import { Container } from "react-bootstrap";
-const Layout = () => {
+const Layout = (props) => {
   return (
     <div>
       <MainNav>

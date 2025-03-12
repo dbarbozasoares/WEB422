@@ -1,8 +1,13 @@
-const PageHeader = () => {
+import Card from "react-bootstrap/Card";
+
+const PageHeader = ({ text }) => {
   return (
-    <div>
-      <p>PageHeader</p>
-    </div>
+    <>
+      <Card className="text-center bg-light">
+        <Card.Body>{text}</Card.Body>
+      </Card>
+      <br />
+    </>
   );
 };
 
