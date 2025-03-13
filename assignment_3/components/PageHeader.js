@@ -1,5 +1,5 @@
 import Card from "react-bootstrap/Card";
-
+import about from "@/pages/about";
 const PageHeader = ({ text }) => {
   return (
     <>
