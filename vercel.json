@@ -2,21 +2,38 @@
   "version": 2,
   "builds": [
     {
-      "src": "server.js",
+      "src": "Assignment_1/server.js",
       "use": "@vercel/node",
-      "config": { 
-        "includeFiles": ["public/**"] 
+      "config": {
+        "includeFiles": [
+          "Assignment_1/public/**",
+          "Assignment_1/views/**",
+          "Assignment_1/modules/**"
+        ]
       }
     }
   ],
   "routes": [
     {
+      "src": "/api/listings",
+      "dest": "Assignment_1/server.js",
+      "headers": {
+        "Cache-Control": "no-store"
+      }
+    },
+    {
+      "src": "/api/listings/(.*)",
+      "dest": "Assignment_1/server.js",
+      "headers": {
+        "Cache-Control": "no-store"
+      }
+    },
+    {
       "src": "/(.*)",
-      "dest": "server.js",
+      "dest": "Assignment_1/server.js",
       "headers": {
         "Cache-Control": "no-store"
       }
     }
-  ],
-  "buildCommand": "npm install --legacy-peer-deps && npm run build"
+  ]
 }
