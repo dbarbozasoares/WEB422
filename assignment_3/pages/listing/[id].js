@@ -1,5 +1,3 @@
-// pages/listing/[id].js
-
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import ListingDetails from "@/components/ListingDetails";
@@ -9,12 +7,11 @@ import PageHeader from "@/components/PageHeader";
 const Listing = () => {
   const router = useRouter();
   const { id } = router.query;
+  const { data, error, isLoading } = useSWR(
+    id ? `https://webassignments-three.vercel.app/api/listings/${id}` : null
+  );
 
   if (!id) return null;
-
-  const { data, error, isLoading } = useSWR(
-    `https://webassignments-three.vercel.app/api/listings/${id}`
-  );
 
   if (isLoading) {
     return <div>Loading...</div>;

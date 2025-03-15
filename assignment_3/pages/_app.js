@@ -1,15 +1,12 @@
-// import "@/styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Layout from "@/components/Layout";
 import { SWRConfig } from "swr";
+import Layout from "@/components/Layout";
 
 const fetcher = async (...args) => {
   const response = await fetch(...args);
-
   if (!response.ok) {
     throw new Error(`Request failed with status: ${response.status}`);
   }
-
   return response.json();
 };
 

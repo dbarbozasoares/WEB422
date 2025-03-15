@@ -10,8 +10,6 @@ export async function getStaticProps() {
     "https://webassignments-three.vercel.app/api/listings/10006546"
   );
   const data = await res.json();
-  console.log(data);
-
   return {
     props: { listing: data },
   };
@@ -22,31 +20,30 @@ const About = ({ listing }) => {
     <>
       <div>
         <PageHeader text="About the Developer - Diego B Soares" />
-
         <Card className="bg-light">
           <Card.Body>
             <p>
               Hi, I'm Diego Barboza Soares, a passionate backend developer with
               a strong focus on building modern, scalable applications and
-              perfomance apps. My expertise includes{" "}
+              performance apps. My expertise includes{" "}
               <Image
                 className={styles.image}
                 src="https://miro.medium.com/v2/resize:fit:1400/1*aF1u1vDDft_pzrZ0SlLRuw.png"
-                alt=""
+                alt="Logo"
                 width={55}
                 height={20}
               />{" "}
               <Image
                 className={styles.imagesml}
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1200px-ISO_C%2B%2B_Logo.svg.png"
-                alt=""
+                alt="C++ Logo"
                 width={20}
                 height={20}
               />{" "}
               <Image
                 className={styles.imagesml}
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/800px-Python-logo-notext.svg.png"
-                alt=""
+                alt="Python Logo"
                 width={20}
                 height={20}
               />
