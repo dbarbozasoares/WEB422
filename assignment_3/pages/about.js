@@ -6,13 +6,26 @@ import Image from "next/image";
 import styles from "@/styles/About.module.css";
 
 export async function getStaticProps() {
-  const res = await fetch(
-    "https://webassignments-three.vercel.app/api/listings/10006546"
-  );
-  const data = await res.json();
-  return {
-    props: { listing: data },
-  };
+  try {
+    const res = await fetch(
+      "https://webassignments-three.vercel.app/api/listings/10006546"
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+
+    const data = await res.json();
+
+    return {
+      props: { listing: data },
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      props: { listing: null }, // Or handle this differently based on your needs
+    };
+  }
 }
 
 const About = ({ listing }) => {
