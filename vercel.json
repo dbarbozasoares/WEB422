@@ -13,42 +13,21 @@
       }
     },
     {
-      "src": "assignment_3/package.json",
+      "src": "Assignment_3/package.json",
       "use": "@vercel/next"
     }
   ],
   "routes": [
     {
-      "src": "^/$",
-      "dest": "/assignment_3/pages/index",
+      "src": "/(.*)",
+      "dest": "Assignment_1/server.js",
       "headers": {
         "Cache-Control": "no-store"
       }
     },
     {
-      "src": "/about",
-      "dest": "/assignment_3/pages/about",
-      "headers": {
-        "Cache-Control": "no-store"
-      }
-    },
-    {
-      "src": "/contact",
-      "dest": "/assignment_3/pages/contact",
-      "headers": {
-        "Cache-Control": "no-store"
-      }
-    },
-    {
-      "src": "/api/listings",
-      "dest": "/Assignment_1/server.js",
-      "headers": {
-        "Cache-Control": "no-store"
-      }
-    },
-    {
-      "src": "/api/listings/(.*)",
-      "dest": "/Assignment_1/server.js",
+      "src": "/assignment_3/(.*)",
+      "dest": "/assignment_3/$1",
       "headers": {
         "Cache-Control": "no-store"
       }
