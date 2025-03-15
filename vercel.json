@@ -20,14 +20,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "assignment_3/$1", 
-      "headers": {
-        "Cache-Control": "no-store"
-      }
-    },
-    {
-      "src": "/(.*)",
-      "dest": "Assignment_1/server.js", 
+      "dest": "Assignment_1/server.js",
       "headers": {
         "Cache-Control": "no-store"
       }
