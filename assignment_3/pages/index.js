@@ -10,10 +10,12 @@ const Home = () => {
 
   // Use SWR to fetch listing data from the API
   const { data, error } = useSWR(
-    `https://webassignments-three.vercel.app/api/listings?page=${page}&perPage=10`
+    page
+      ? `https://webassignments-three.vercel.app/api/listings?page=${page}&perPage=10`
+      : null
   );
 
-  // Update pageData when the data changes
+  // Update data updated if any change on data
   useEffect(() => {
     if (data) {
       const sortedData = [...data].sort((a, b) => {
@@ -25,7 +27,7 @@ const Home = () => {
     }
   }, [data]);
 
-  // Functions for pagination
+  // Change pagination
   const previous = () => {
     if (page > 1) setPage(page - 1);
   };
@@ -34,7 +36,7 @@ const Home = () => {
     setPage(page + 1);
   };
 
-  // Handle errors or loading states
+  // Handle errors or loading states so it displays something
   if (error) {
     return <div>Error loading listings...</div>;
   }
@@ -45,7 +47,7 @@ const Home = () => {
 
   return (
     <Container>
-      <PageHeader text="Browse Listings : Sorted by Number of Ratings" />
+      <PageHeader text="Sorted by Rating ratio" />
 
       <Accordion>
         {pageData.map((listing) => (
