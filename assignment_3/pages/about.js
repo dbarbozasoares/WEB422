@@ -23,7 +23,7 @@ export async function getStaticProps() {
   } catch (error) {
     console.error("Error fetching data:", error);
     return {
-      props: { listing: null }, // Or handle this differently based on your needs
+      props: { listing: null },
     };
   }
 }
