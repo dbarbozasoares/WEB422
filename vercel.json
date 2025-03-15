@@ -13,7 +13,7 @@
       }
     },
     {
-      "src": "Assignment_3/package.json",
+      "src": "assignment_3/package.json",
       "use": "@vercel/next"
     }
   ],
