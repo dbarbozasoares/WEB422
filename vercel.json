@@ -27,7 +27,7 @@
     },
     {
       "src": "/assignment_3/(.*)",
-      "dest": "Assignment_3/$1",
+      "dest": "/assignment_3/$1",
       "headers": {
         "Cache-Control": "no-store"
       }
