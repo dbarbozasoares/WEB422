@@ -10,9 +10,7 @@ const Home = () => {
 
   // Use SWR to fetch listing data from the API
   const { data, error } = useSWR(
-    page
-      ? `https://webassignments-three.vercel.app/api/listings?page=${page}&perPage=10`
-      : null
+    `https://webassignments-three.vercel.app/api/listings?page=${page}&perPage=10`
   );
 
   // Update data updated if any change on data

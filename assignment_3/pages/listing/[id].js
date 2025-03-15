@@ -8,7 +8,7 @@ const Listing = () => {
   const router = useRouter();
   const { id } = router.query;
   const { data, error, isLoading } = useSWR(
-    id ? `https://webassignments-three.vercel.app/api/listings/${id}` : null
+    `https://webassignments-three.vercel.app/api/listings/${id}`
   );
 
   if (!id) return null;
