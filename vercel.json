@@ -3,14 +3,7 @@
   "builds": [
     {
       "src": "Assignment_1/server.js",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": [
-          "Assignment_1/public/**",
-          "Assignment_1/views/**",
-          "Assignment_1/modules/**"
-        ]
-      }
+      "use": "@vercel/node"
     },
     {
       "src": "assignment_3/package.json",
@@ -19,18 +12,8 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "Assignment_1/server.js",
-      "headers": {
-        "Cache-Control": "no-store"
-      }
-    },
-    {
       "src": "/assignment_3/(.*)",
-      "dest": "/assignment_3/$1",
-      "headers": {
-        "Cache-Control": "no-store"
-      }
+      "dest": "/assignment_3/$1"
     }
   ]
 }
