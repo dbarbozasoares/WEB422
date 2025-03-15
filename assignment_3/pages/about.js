@@ -23,8 +23,8 @@ const About = ({ listing }) => {
         <Card className="bg-light">
           <Card.Body>
             <p>
-              Hi, I'm Diego Barboza Soares, a passionate backend developer with
-              a strong focus on building modern, scalable applications and
+              Hi, I&apos;m Diego Barboza Soares, a passionate backend developer
+              with a strong focus on building modern, scalable applications and
               performance apps. My expertise includes{" "}
               <Image
                 className={styles.image}
