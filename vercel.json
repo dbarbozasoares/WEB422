@@ -3,7 +3,14 @@
   "builds": [
     {
       "src": "Assignment_1/server.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "Assignment_1/public/**",
+          "Assignment_1/views/**",
+          "Assignment_1/modules/**"
+        ]
+      }
     },
     {
       "src": "assignment_3/package.json",
@@ -12,8 +19,11 @@
   ],
   "routes": [
     {
-      "src": "/assignment_3/(.*)",
-      "dest": "/assignment_3/$1"
+      "src": "/assignment_3/(.*)", 
+      "dest": "/assignment_3/$1", 
+      "headers": {
+        "Cache-Control": "no-store"
+      }
     }
   ]
 }
