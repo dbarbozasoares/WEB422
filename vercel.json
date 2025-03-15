@@ -20,42 +20,35 @@
   "routes": [
     {
       "src": "^/$",
-      "dest": "assignment_3/pages/index",
+      "dest": "/assignment_3/pages/index",
       "headers": {
         "Cache-Control": "no-store"
       }
     },
     {
       "src": "/about",
-      "dest": "assignment_3/pages/about",
+      "dest": "/assignment_3/pages/about",
       "headers": {
         "Cache-Control": "no-store"
       }
     },
     {
       "src": "/contact",
-      "dest": "assignment_3/pages/contact",
+      "dest": "/assignment_3/pages/contact",
       "headers": {
         "Cache-Control": "no-store"
       }
     },
     {
       "src": "/api/listings",
-      "dest": "Assignment_1/server.js",
+      "dest": "/Assignment_1/server.js",
       "headers": {
         "Cache-Control": "no-store"
       }
     },
     {
       "src": "/api/listings/(.*)",
-      "dest": "Assignment_1/server.js",
-      "headers": {
-        "Cache-Control": "no-store"
-      }
-    },
-    {
-      "src": "/(.*)",
-      "dest": "Assignment_1/server.js",
+      "dest": "/Assignment_1/server.js",
       "headers": {
         "Cache-Control": "no-store"
       }
