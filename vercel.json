@@ -11,12 +11,23 @@
           "Assignment_1/modules/**"
         ]
       }
+    },
+    {
+      "src": "Assignment_3/package.json",
+      "use": "@vercel/next"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
       "dest": "Assignment_1/server.js",
+      "headers": {
+        "Cache-Control": "no-store"
+      }
+    },
+    {
+      "src": "/assignment_3/(.*)",
+      "dest": "Assignment_3/$1",
       "headers": {
         "Cache-Control": "no-store"
       }
