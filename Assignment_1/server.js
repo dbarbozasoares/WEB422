@@ -18,14 +18,7 @@ const Listing = require("./modules/listingSchema");
 require("dotenv").config();
 
 app.use(express.json());
-const corsOptions = {
-  origin: ["http://localhost:3000", "https://webassignments-three.vercel.app"],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-};
-
-// Use CORS middleware globally
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 
 db.initialize(process.env.MONGODB_CONN_STRING)
