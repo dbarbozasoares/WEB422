@@ -1,0 +1,58 @@
+/* Display Components */
+.display-container {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  
+  .display-container p {
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  /* Address Display */
+  .address-display {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .address-display h2 {
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .address-display hr {
+    margin-top: 15px;
+    border: 0;
+    border-top: 1px solid #ddd;
+  }
+  
+  /* Fruits Display */
+  .fruits-display {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .fruits-display ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .fruits-display li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+  }
+  
+  /* Sum Display */
+  .sum-display {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .sum-display h1 {
+    font-size: 1.5rem;
+    color: #333;
+  }
+  

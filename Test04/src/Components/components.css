@@ -1,0 +1,283 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f1f1f1;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .container {
+    max-width: 30%;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  h1,
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  button {
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  input[type="text"],
+  input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-align: center;
+  }
+  
+  input[type="text"]:focus,
+  input[type="number"]:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  label {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  
+  button.add-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+  }
+  
+  button.add-btn:hover {
+    background-color: #218838;
+  }
+  
+  button.reset-btn {
+    background-color: #dc3545;
+    color: white;
+    margin-top: 10px;
+  }
+  
+  button.reset-btn:hover {
+    background-color: #c82333;
+  }
+  
+  .fruits-container {
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .fruits-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .fruits-list li {
+    background-color: #fafafa;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+  }
+  
+  input[type="text"].fruit-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  button.add-fruit-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+  }
+  
+  button.add-fruit-btn:hover {
+    background-color: #218838;
+  }
+  
+  .sum-container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  input[type="number"].sum-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  button.add-sum-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+  }
+  
+  button.add-sum-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  button.reset-sum-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 10px;
+  }
+  
+  button.reset-sum-btn:hover {
+    background-color: #c82333;
+  }
+  
+  .address-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .address-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .address-heading {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .address-input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .change-btn {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .change-btn:hover {
+    background-color: #218838;
+  }
+  
+  .reset-btn {
+    background-color: #dc3545;
+    color: white;
+    margin-top: 10px;
+  }
+  
+  .reset-btn:hover {
+    background-color: #c82333;
+  }
+  
+  .random-user-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f1f1f1;
+  }
+  
+  .random-user-info {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+  }
+  
+  .random-user-avatar {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+  }
+  
+  .random-user-info h2 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .random-user-info p {
+    font-size: 1rem;
+    color: #333;
+    margin: 10px 0;
+  }
+  
+  .random-user-info strong {
+    font-weight: bold;
+  }
+  
+  .random-user-loading {
+    font-size: 1.2rem;
+    color: #007bff;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .random-user-error {
+    font-size: 1.2rem;
+    color: #dc3545;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
